@@ -17,7 +17,7 @@ class Core_Model_UomTest extends PHPUnit_Framework_TestCase
 
     public function testModelIsEmpty()
     {
-        $this->assertInstanceOf('\\Core\\Model\\Uom',$this->_model);
+        $this->assertInstanceOf('\Core\Model\Uom',$this->_model);
         $this->assertNull($this->_model->getUomCode());
         $this->assertNull($this->_model->getDescription());
     }

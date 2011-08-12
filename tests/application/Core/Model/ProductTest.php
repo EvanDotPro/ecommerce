@@ -17,7 +17,7 @@ class Core_Model_ProductTest extends PHPUnit_Framework_TestCase
 
     public function testModelIsEmpty()
     {
-        $this->assertInstanceOf('\\Core\\Model\\Product',$this->_model);
+        $this->assertInstanceOf('\Core\Model\Product',$this->_model);
         $this->assertNull($this->_model->getProductId());
         $this->assertNull($this->_model->getName());
         $this->assertNull($this->_model->getItemNumber());
@@ -35,7 +35,6 @@ class Core_Model_ProductTest extends PHPUnit_Framework_TestCase
                 ),
                 'name'         => 'My Product',
                 'item_number'  => '123ABC',
-                'attributes'   => array(),
             ))
         );
     }
@@ -51,10 +50,10 @@ class Core_Model_ProductTest extends PHPUnit_Framework_TestCase
                      ->setItemNumber($data['item_number'])
                      ->setManufacturer($data['manufacturer']);
         $manufacturer = $this->_model->getManufacturer();
-        $this->assertInstanceOf('\\Core\\Model\\Manufacturer', $manufacturer);
+        $this->assertInstanceOf('\Core\Model\Manufacturer', $manufacturer);
         $this->_model->setManufacturer($manufacturer);
         $manufacturer = $this->_model->getManufacturer();
-        $this->assertInstanceOf('\\Core\\Model\\Manufacturer', $manufacturer);
+        $this->assertInstanceOf('\Core\Model\Manufacturer', $manufacturer);
         $this->assertSame($this->_model->toArray(), $data);
     }
 

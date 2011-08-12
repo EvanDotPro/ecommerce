@@ -50,7 +50,7 @@ abstract class ModelAbstract
                 $array[$key] = $value->toArray();
             } elseif (is_array($value) && count($value) > 0) {
                 $array[$key] = $this->toArray($value);
-            } else {
+            } elseif ($value !== NULL && !is_array($value)) {
                 $array[$key] = $value;
             }
         }

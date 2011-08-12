@@ -8,7 +8,10 @@
             <directory suffix=".php">../application/</directory>
             <directory suffix=".php">../library/</directory>
             <exclude>
+                <directory>../library/ZendFramework2</directory>
                 <directory suffix=".phtml">../application/</directory>
+                <file>../application/init.php</file>
+                <file>../application/cli.php</file>
             </exclude>
         </whitelist>
     </filter>

@@ -17,7 +17,7 @@ class Core_Model_ManufacturerTest extends PHPUnit_Framework_TestCase
 
     public function testModelIsEmpty()
     {
-        $this->assertInstanceOf('\\Core\\Model\\Manufacturer',$this->_model);
+        $this->assertInstanceOf('\Core\Model\Manufacturer',$this->_model);
         $this->assertNull($this->_model->getManufacturerId());
         $this->assertNull($this->_model->getName());
     }
