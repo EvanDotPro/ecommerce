@@ -39,6 +39,14 @@ class Product extends ModelAbstract
     protected $_attributes = array();
 
     /**
+     * _uoms 
+     * 
+     * @var array
+     * @access protected
+     */
+    protected $_uoms = array();
+
+    /**
      * Get productId.
      *
      * @return productId
@@ -157,6 +165,38 @@ class Product extends ModelAbstract
     public function addAttribute($attribute)
     {
         $this->_attributes[] = $attribute;
+        return $this;
+    }
+ 
+    /**
+     * Get uoms.
+     *
+     * @return uoms
+     */
+    public function getUoms()
+    {
+        return $this->_uoms;
+    }
+ 
+    /**
+     * Set uoms.
+     *
+     * @param $uoms the value to be set
+     */
+    public function setUoms($uoms)
+    {
+        $this->_uoms = $uoms;
+        return $this;
+    }
+
+    /**
+     * addUom 
+     * 
+     * @param mixed $uom 
+     */
+    public function addUom($uom)
+    {
+        $this->_uoms[] = $uom;
         return $this;
     }
 }
