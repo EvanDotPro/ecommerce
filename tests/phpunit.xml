@@ -10,6 +10,7 @@
             <exclude>
                 <directory>../library/ZendFramework2</directory>
                 <directory suffix=".phtml">../application/</directory>
+                <file>../application/Bootstrap.php</file>
                 <file>../application/init.php</file>
                 <file>../application/cli.php</file>
             </exclude>

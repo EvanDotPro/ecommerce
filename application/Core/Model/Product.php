@@ -153,7 +153,10 @@ class Product extends ModelAbstract
      */
     public function setAttributes($attributes)
     {
-        $this->_attributes = $attributes;
+        $this->_attributes = array();
+        foreach ($attributes as $attribute) {
+            $this->addAttribute($attribute);
+        }
         return $this;
     }
 
@@ -164,7 +167,13 @@ class Product extends ModelAbstract
      */
     public function addAttribute($attribute)
     {
-        $this->_attributes[] = $attribute;
+        if (is_array($attribute)) {
+            $this->_attributes[] = new Attribute($attribute);
+        } elseif ($attribute instanceof Attribute) {
+            $this->_attributes[] = $attribute;
+        } else {
+            throw new \InvalidArgumentException('No valid attribute provided');
+        }
         return $this;
     }
  

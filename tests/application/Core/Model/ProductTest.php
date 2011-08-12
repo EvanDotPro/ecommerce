@@ -35,6 +35,12 @@ class Core_Model_ProductTest extends PHPUnit_Framework_TestCase
                 ),
                 'name'         => 'My Product',
                 'item_number'  => '123ABC',
+                'attributes'   => array (
+                    array (
+                        'name'  => 'color',
+                        'value' => 'red',
+                    ),
+                ),
             ))
         );
     }
@@ -48,7 +54,8 @@ class Core_Model_ProductTest extends PHPUnit_Framework_TestCase
         $this->_model->setProductId($data['product_id'])
                      ->setName($data['name'])
                      ->setItemNumber($data['item_number'])
-                     ->setManufacturer($data['manufacturer']);
+                     ->setManufacturer($data['manufacturer'])
+                     ->setAttributes($data['attributes']);
         $manufacturer = $this->_model->getManufacturer();
         $this->assertInstanceOf('\Core\Model\Manufacturer', $manufacturer);
         $this->_model->setManufacturer($manufacturer);
