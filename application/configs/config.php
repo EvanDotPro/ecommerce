@@ -1,7 +1,8 @@
 <?php
 $c = array();
-$c['autoload']['Zend\Loader\StandardAutoloader']['namespaces']['Core']  = APPLICATION_PATH . '/Core';
-$c['autoload']['Zend\Loader\ClassMapAutoloader'][0]['Bootstrap']        = APPLICATION_PATH . '/Bootstrap.php';
+$c['autoload']['Zend\Loader\StandardAutoloader']['namespaces']['Core']     = APPLICATION_PATH . '/Core';
+$c['autoload']['Zend\Loader\StandardAutoloader']['namespaces']['BaseApp']  = LIBRARY_PATH . '/BaseApp';
+$c['autoload']['Zend\Loader\ClassMapAutoloader'][0]['Bootstrap']           = APPLICATION_PATH . '/Bootstrap.php';
 
 $c['phpSettings']['display_startup_errors'] = 1;
 $c['phpSettings']['display_errors']         = 1;
