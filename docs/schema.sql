@@ -205,7 +205,7 @@ INSERT INTO `catalog_category`
 (`category_id`,  `name`) VALUES
 (1,              'Computer Hardware'),
 (2,              'Fans & Heatsinks'),
-(3,              'Thermal Compount / Grease');
+(3,              'Thermal Compound / Grease');
 
 INSERT INTO `catalog_category_website_linker` 
 (`website_id`,  `category_id`,  `parent_category_id`) VALUES
@@ -233,9 +233,9 @@ INSERT INTO `uom`
 
 INSERT INTO `catalog_attribute`
 (`attribute_id`,  `name`) VALUES
-(1,               'Thermal Conductivity (W/mk)'),
-(2,               'Viscosity (poise)'),
-(3,               'Density (g/cm3)'),
+(1,               'Thermal Conductivity'),
+(2,               'Viscosity'),
+(3,               'Density'),
 (4,               'Net Weight');
 
 INSERT INTO `catalog_product` 
@@ -245,12 +245,12 @@ INSERT INTO `catalog_product`
 
 INSERT INTO `catalog_product_attribute_value` 
 (`product_id`,  `attribute_id`,  `value`) VALUES
-(1,             1,               '8.5'),
-(1,             2,               '870'),
-(1,             3,               '2.5'),
+(1,             1,               '8.5 W/mk'),
+(1,             2,               '870 poise'),
+(1,             3,               '2.5 g/cm^3'),
 (1,             4,               '4g'),
-(2,             2,               '850'),
-(2,             3,               '3.96'),
+(2,             2,               '850 poise'),
+(2,             3,               '3.96 g/cm^3'),
 (2,             4,               '30g');
 
 INSERT INTO `catalog_product_uom` 
