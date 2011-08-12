@@ -194,7 +194,10 @@ class Product extends ModelAbstract
      */
     public function setUoms($uoms)
     {
-        $this->_uoms = $uoms;
+        $this->_uoms = array();
+        foreach ($uoms as $uom) {
+            $this->addUom($uom);
+        }
         return $this;
     }
 
@@ -205,7 +208,13 @@ class Product extends ModelAbstract
      */
     public function addUom($uom)
     {
-        $this->_uoms[] = $uom;
+        if (is_array($uom)) {
+            $this->_uoms[] = new Uom($uom);
+        } elseif ($uom instanceof Uom) {
+            $this->_uoms[] = $uom;
+        } else {
+            throw new \InvalidArgumentException('No valid uom provided');
+        }
         return $this;
     }
 }
