@@ -4,41 +4,20 @@ use BaseApp\Model\ModelAbstract;
 class Attribute extends ModelAbstract
 {
     /**
-     * _attributeId 
-     * 
-     * @var int
-     * @access protected
-     */
-    protected $_attributeId;
-
-    /**
      * _name 
      * 
      * @var string
      * @access protected
      */
     protected $_name;
- 
+
     /**
-     * Get attributeId.
-     *
-     * @return attributeId
+     * _value 
+     * 
+     * @var string
+     * @access protected
      */
-    public function getAttributeId()
-    {
-        return $this->_attributeId;
-    }
- 
-    /**
-     * Set attributeId.
-     *
-     * @param $attributeId the value to be set
-     */
-    public function setAttributeId($attributeId)
-    {
-        $this->_attributeId = (int) $attributeId;
-        return $this;
-    }
+    protected $_value;
  
     /**
      * Get name.
@@ -60,14 +39,25 @@ class Attribute extends ModelAbstract
         $this->_name = $name;
         return $this;
     }
-
+ 
     /**
-     * __toString 
-     * 
-     * @return string
+     * Get value.
+     *
+     * @return value
      */
-    public function __toString()
+    public function getValue()
     {
-        return $this->getName();
+        return $this->_value;
+    }
+ 
+    /**
+     * Set value.
+     *
+     * @param $value the value to be set
+     */
+    public function setValue($value)
+    {
+        $this->_value = $value;
+        return $this;
     }
 }
