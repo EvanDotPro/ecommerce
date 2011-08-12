@@ -145,23 +145,31 @@ class Uom extends ModelAbstract
     /**
      * Set availability.
      *
-     * @param $availability the value to be set
+     * @param $availabilities the value to be set
      */
-    public function setAvailability($availability)
+    public function setAvailability($availabilities)
     {
-        $this->_availability = $availability;
+        $this->_availability = array();
+        foreach ($availabilities as $availability) {
+            $this->addAvailability($availability);
+        }
         return $this;
     }
 
     /**
      * addAvailability 
      * 
-     * @param mixed $distributor 
-     * @param float $cost 
+     * @param mixed $availability 
      */
     public function addAvailability($availability)
     {
-        $this->_availability[] = $availability;
+        if (is_array($availability)) {
+            $this->_availability[] = new Availability($availability);
+        } elseif ($availability instanceof Availability) {
+            $this->_availability[] = $availability;
+        } else {
+            throw new \InvalidArgumentException('No valid availability provided');
+        }
         return $this;
     }
  

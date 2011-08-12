@@ -66,6 +66,6 @@ class Distributor extends ModelAbstract
      */
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() ?: '';
     }
 }

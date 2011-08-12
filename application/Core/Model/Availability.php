@@ -36,7 +36,13 @@ class Availability extends ModelAbstract
      */
     public function setDistributor($distributor)
     {
-        $this->_distributor = $distributor;
+        if (is_array($distributor)) {
+            $this->_distributor = new Distributor($distributor);
+        } elseif ($distributor instanceof Distributor) {
+            $this->_distributor = $distributor;
+        } else {
+            throw new \InvalidArgumentException('No valid distributor provided');
+        }
         return $this;
     }
  

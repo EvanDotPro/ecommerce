@@ -20,6 +20,10 @@ class Core_Model_UomTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Core\Model\Uom',$this->_model);
         $this->assertNull($this->_model->getUomCode());
         $this->assertNull($this->_model->getDescription());
+        $this->assertNull($this->_model->getQuantity());
+        $this->assertNull($this->_model->getPrice());
+        $array = $this->_model->getAvailability();
+        $this->assertTrue(is_array($array) && count($array) === 0);
     }
 
     public function modelDataProvider()
@@ -28,6 +32,18 @@ class Core_Model_UomTest extends PHPUnit_Framework_TestCase
             array (array (
                 'uom_code'    => 'EA',
                 'description' => 'Each',
+                'quantity'    => 1,
+                'price'       => 1,
+                'availability'=> array (
+                    array (
+                        'distributor' => array (
+                            'distributor_id' => 1,
+                            'name'           => 'Company',
+                        ),
+                        'cost'        => 1.0,
+                    ),
+                ),
+                'enabled'      => true,
             ))
         );
     }
@@ -35,11 +51,37 @@ class Core_Model_UomTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider modelDataProvider
      */
-    public function testModelContainsCorrectData($data)
+    public function testModelContainsCorrectDataWithAvailabilityArray($data)
     {
         $this->_model->setUomCode($data['uom_code'])
-                     ->setDescription($data['description']);
+                     ->setDescription($data['description'])
+                     ->setQuantity($data['quantity'])
+                     ->setPrice($data['price'])
+                     ->setAvailability($data['availability'])
+                     ->setEnabled($data['enabled']);
         $this->assertSame($this->_model->toArray(), $data);
+    }
+
+    /**
+     * @dataProvider modelDataProvider
+     */
+    public function testModelContainsCorrectDataWithAvailabilityModel($data)
+    {
+        $this->_model->setUomCode($data['uom_code'])
+                     ->setDescription($data['description'])
+                     ->setQuantity($data['quantity'])
+                     ->setPrice($data['price'])
+                     ->addAvailability(new \Core\Model\Availability($data['availability'][0]))
+                     ->setEnabled($data['enabled']);
+        $this->assertSame($this->_model->toArray(), $data);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testModelThrowsInvalidArgumentExceptionForAvailability()
+    {
+        $this->_model->setAvailability(array('asdf'));
     }
 
     /**
@@ -48,6 +90,19 @@ class Core_Model_UomTest extends PHPUnit_Framework_TestCase
     public function testModelCanBePopulatedAtConstruct($data)
     {
         $model = new \Core\Model\Uom($data);
+        $this->assertSame($model->toArray(), $data);
+    }
+
+    /**
+     * @dataProvider modelDataProvider
+     */
+    public function testModelConvenienceMethods($data)
+    {
+        $model = new \Core\Model\Uom($data);
+        $model->disable();
+        $this->assertFalse($model->getEnabled());
+        $model->enable();
+        $this->assertTrue($model->getEnabled());
         $this->assertSame($model->toArray(), $data);
     }
 }
